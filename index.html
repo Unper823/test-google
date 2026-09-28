@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier — Editorial Blog & Website Blueprint</title>
+    <meta name="description" content="A refined 4-page editorial blog blueprint featuring new article highlights, searchable archives, reader view, author profile, and AI Studio customization guide." />
+    <meta property="og:title" content="Atelier — Editorial Blog & Website Blueprint" />
+    <meta property="og:description" content="A refined 4-page editorial blog blueprint featuring new article highlights, searchable archives, reader view, author profile, and AI Studio customization guide." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function() {
+        try {
+          var targetGlobal = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : self);
+          var activeFetch = targetGlobal.fetch;
+
+          var makeConfigurable = function(target) {
+            if (!target) return false;
+            try {
+              Object.defineProperty(target, 'fetch', {
+                get: function() {
+                  return activeFetch;
+                },
+                set: function(fn) {
+                  activeFetch = fn;
+                },
+                configurable: true,
+                enumerable: true
+              });
+              return true;
+            } catch (err) {
+              return false;
+            }
+          };
+
+          makeConfigurable(targetGlobal);
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            makeConfigurable(Window.prototype);
+          }
+        } catch (e) {
+          // Pass-through
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#FAF8F5] text-stone-900 antialiased selection:bg-stone-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

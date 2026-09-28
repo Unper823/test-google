@@ -1,0 +1,6 @@
+{
+  "name": "Atelier — Editorial Blog & Website Blueprint",
+  "description": "A refined 4-page editorial blog blueprint featuring new article highlights, searchable archives, reader view, author profile, and AI Studio customization guide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
