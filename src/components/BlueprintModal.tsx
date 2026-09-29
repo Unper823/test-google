@@ -98,7 +98,6 @@ export interface Article {
     avatar: string;
     bio: string;
   };
-  tags: string[];           // Searchable subject keywords
   likes: number;            // Reader appreciation counter
   views: number;            // Archival read count
 }`;

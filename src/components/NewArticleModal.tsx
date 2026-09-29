@@ -24,7 +24,6 @@ export const NewArticleModal: React.FC<NewArticleModalProps> = ({
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [pullQuote, setPullQuote] = useState('');
-  const [tags, setTags] = useState('Design, Architecture, Typography');
   const [readTime, setReadTime] = useState('5 min read');
 
   React.useEffect(() => {
@@ -126,7 +125,6 @@ export const NewArticleModal: React.FC<NewArticleModalProps> = ({
       coverImage: typographyImg,
       coverCaption: `Figure. Archival monograph written by ${PRIMARY_AUTHOR.name}.`,
       author: PRIMARY_AUTHOR, // Explicitly authored by Waleed Alharbi!
-      tags: tags.split(',').map((t) => t.trim()).filter(Boolean),
       likes: 1,
       views: 12,
     };
@@ -145,7 +143,6 @@ export const NewArticleModal: React.FC<NewArticleModalProps> = ({
 In traditional Japanese aesthetics, the concept of ma (間) refers to the negative space between structural elements. It is not an absence, but a presence filled with quiet potential.
 
 By honoring this negative space, we invite the reader to slow down, absorb each proposition, and experience reading as a peaceful intellectual pursuit.`);
-    setTags('Spatial Design, Ma, Architecture, Modernism');
     setReadTime('4 min read');
   };
 
@@ -258,31 +255,17 @@ By honoring this negative space, we invite the reader to slow down, absorb each 
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block font-semibold font-mono-code uppercase text-stone-700 mb-1">
-                Estimated Reading Time
-              </label>
-              <input
-                type="text"
-                value={readTime}
-                onChange={(e) => setReadTime(e.target.value)}
-                placeholder="4 min read"
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-stone-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold font-mono-code uppercase text-stone-700 mb-1">
-                Tags (Comma separated)
-              </label>
-              <input
-                type="text"
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-                placeholder="Design, Architecture, Typography"
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-stone-300 rounded-lg"
-              />
-            </div>
+          <div>
+            <label className="block font-semibold font-mono-code uppercase text-stone-700 mb-1">
+              Estimated Reading Time
+            </label>
+            <input
+              type="text"
+              value={readTime}
+              onChange={(e) => setReadTime(e.target.value)}
+              placeholder="4 min read"
+              className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-stone-300 rounded-lg"
+            />
           </div>
 
           <div className="pt-4 border-t border-stone-200 flex items-center justify-between">

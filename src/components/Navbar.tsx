@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { PageTab } from '../types/blog';
 import { OWNER_SECURITY_CONFIG } from '../data/blogData';
-import { Compass, PenLine, Menu, X, Lock, ShieldCheck } from 'lucide-react';
+import { Compass, PenLine, Menu, X, Lock, ShieldCheck, FolderArchive } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: PageTab;
   setActiveTab: (tab: PageTab) => void;
   onOpenBlueprint: () => void;
+  onOpenWordPress: () => void;
   onOpenNewArticle: () => void;
   isAuthorAuthenticated: boolean;
   onRequestAuth: () => void;
@@ -16,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
   onOpenBlueprint,
+  onOpenWordPress,
   onOpenNewArticle,
   isAuthorAuthenticated,
   onRequestAuth,
@@ -112,6 +114,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           )}
 
           <button
+            onClick={onOpenWordPress}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-800 bg-[#F2EDE4] hover:bg-[#EAE3D6] rounded-lg transition-colors border border-stone-300 cursor-pointer whitespace-nowrap shadow-2xs"
+            title="Download WordPress Theme (.zip) or connect Headless WordPress REST API"
+          >
+            <FolderArchive className="w-3.5 h-3.5 text-stone-700" />
+            <span className="hidden sm:inline">WordPress Theme</span>
+            <span className="sm:hidden">WordPress</span>
+          </button>
+
+          <button
             onClick={onOpenBlueprint}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-xs cursor-pointer whitespace-nowrap"
             title="View Blog Blueprint Architecture and Google AI Studio Prompts"
@@ -175,6 +187,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>Author Desk (Unlock for Waleed)</span>
               </button>
             )}
+
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenWordPress();
+              }}
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium text-stone-800 bg-[#F2EDE4] hover:bg-[#EAE3D6] border border-stone-300 rounded-lg cursor-pointer shadow-xs"
+            >
+              <FolderArchive className="w-4 h-4 text-stone-700" />
+              <span>WordPress Theme & Sync</span>
+            </button>
 
             <button
               onClick={() => {

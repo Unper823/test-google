@@ -35,7 +35,6 @@ When we introduce quiet limestone tones, measured typographic hierarchies, and o
 
 Spatial cadence is not the absence of density; it is the deliberate pacing of visual rest. Just as a musical composition requires rests to articulate melody, a long-form monograph demands generous margins, disciplined hairlines, and typography that respects the ocular saccade.`,
     pullQuote: 'Light is not merely an illuminant, but an active structural element that defines volumetric boundaries and emotional resonance.',
-    category: 'Architecture',
     publishedAt: 'Sep 21, 2026',
     dateIso: '2026-09-21',
     readTime: '6 min read',
@@ -44,7 +43,6 @@ Spatial cadence is not the absence of density; it is the deliberate pacing of vi
     coverImage: leadHeroImg,
     coverCaption: 'Figure 1. Natural light study in Nordic architectural studio, capturing diffuse luminance across oak surfaces.',
     author: PRIMARY_AUTHOR,
-    tags: ['Spatial Design', 'Editorial', 'Scandinavian Modernism', 'Lighting'],
     likes: 142,
     views: 1840,
     bookmarksCount: 68,
@@ -61,9 +59,8 @@ Yet modern web frameworks frequently stretch paragraphs across expansive 1440-pi
 
 By anchoring reading containers to a disciplined 65 to 72 character measure (approximately 680 to 720 pixels), we restore natural cadence. Coupled with an optical line height between 1.7 and 1.8, paragraphs feel less like dense text bricks and more like comfortable spoken thoughts.
 
-Furthermore, we must liberate our layouts from the ubiquitous candy-colored pill badges. Metadata—dates, categories, read times—belongs in quiet typographic prose, divided by subtle midpoint dots rather than bordered containers that shout for unwarranted salience.`,
+Furthermore, we must liberate our layouts from the ubiquitous candy-colored pill badges. Metadata—dates, read times—belongs in quiet typographic prose, divided by subtle midpoint dots rather than bordered containers that shout for unwarranted salience.`,
     pullQuote: 'When we constrain line measure, we are not restricting space—we are protecting the cognitive sanctuary of the reader.',
-    category: 'Typography',
     publishedAt: 'Sep 18, 2026',
     dateIso: '2026-09-18',
     readTime: '5 min read',
@@ -72,7 +69,6 @@ Furthermore, we must liberate our layouts from the ubiquitous candy-colored pill
     coverImage: typographyImg,
     coverCaption: 'Figure 2. Swiss grid studies and typographic specimens evaluated on warm paper stocks.',
     author: PRIMARY_AUTHOR,
-    tags: ['Typography', 'Grid Systems', 'Book Design', 'Jan Tschichold'],
     likes: 98,
     views: 1220,
     bookmarksCount: 45,
@@ -91,7 +87,6 @@ When we strip the workspace down to tactile fundamentals—a single notebook wit
 
 Analog friction is not an indulgence or a nostalgic fetish. It is a pacing mechanism. The physical act of turning a printed sheet or sketching a structural hierarchy with charcoal introduces micro-delays that permit ideas to ferment before they are crystallized into prose.`,
     pullQuote: 'Physical friction is not an impediment to thought; it is the ballast that prevents our attention from drifting into vapor.',
-    category: 'Creative Process',
     publishedAt: 'Sep 14, 2026',
     dateIso: '2026-09-14',
     readTime: '7 min read',
@@ -100,7 +95,6 @@ Analog friction is not an indulgence or a nostalgic fetish. It is a pacing mecha
     coverImage: workspaceImg,
     coverCaption: 'Figure 3. Natural shadow casting over an archival drafting studio in Copenhagen.',
     author: PRIMARY_AUTHOR,
-    tags: ['Studio Practice', 'Deep Work', 'Analog Tools', 'Cognitive Focus'],
     likes: 187,
     views: 2410,
     bookmarksCount: 92,
@@ -119,7 +113,6 @@ A design system should be treated as living literature. It must possess an overa
 
 When engineers and designers share a literary vocabulary—speaking of rhythm, focal gravity, and typographic cadence rather than mere padding tokens—the resulting digital products feel unified by a single guiding intellect.`,
     pullQuote: 'A great design system does not tell you what buttons you can press; it tells you what kind of culture you are building.',
-    category: 'Design Systems',
     publishedAt: 'Aug 29, 2026',
     dateIso: '2026-08-29',
     readTime: '8 min read',
@@ -128,7 +121,6 @@ When engineers and designers share a literary vocabulary—speaking of rhythm, f
     coverImage: typographyImg,
     coverCaption: 'Figure 4. Unigrid organizational layouts and structured visual guidelines.',
     author: PRIMARY_AUTHOR,
-    tags: ['Design Systems', 'Vignelli', 'Visual Syntax', 'Philosophy'],
     likes: 215,
     views: 3100,
     bookmarksCount: 114,
@@ -147,7 +139,6 @@ Today, interfaces are increasingly cluttered with unsolicited conversational pro
 
 The most humane software is transparent. It recedes into the background. It respects the user's intelligence by offering immediate, predictable affordances without demanding applause for its own cleverness.`,
     pullQuote: 'The highest compliment one can pay an interface is that during hours of intense creation, one never once noticed it was there.',
-    category: 'Technology & Culture',
     publishedAt: 'Aug 12, 2026',
     dateIso: '2026-08-12',
     readTime: '6 min read',
@@ -156,7 +147,6 @@ The most humane software is transparent. It recedes into the background. It resp
     coverImage: leadHeroImg,
     coverCaption: 'Figure 5. Architectural simplicity and uninterrupted lines of sight.',
     author: PRIMARY_AUTHOR,
-    tags: ['Humane Technology', 'Jef Raskin', 'Cognitive Ergonomics', 'Simplicity'],
     likes: 164,
     views: 2180,
     bookmarksCount: 78,
@@ -173,7 +163,6 @@ In contrast, our digital artifacts are notoriously fragile. Frameworks break eve
 
 If we wish our writings to endure, we must adopt an archival mentality. This means clean semantic HTML that renders gracefully without script dependencies, lightweight static blueprints that can be archived into a single file, and an architectural humility that values durability over fleeting visual trends.`,
     pullQuote: 'True luxury in technology is not instant ephemeral novelty; it is quiet permanence that survives across decades.',
-    category: 'Architecture',
     publishedAt: 'Jul 24, 2026',
     dateIso: '2026-07-24',
     readTime: '9 min read',
@@ -182,7 +171,6 @@ If we wish our writings to endure, we must adopt an archival mentality. This mea
     coverImage: workspaceImg,
     coverCaption: 'Figure 6. Archival storage bindings and hand-bound folio prototypes.',
     author: PRIMARY_AUTHOR,
-    tags: ['Preservation', 'Paper Craft', 'Web History', 'Archival Standards'],
     likes: 192,
     views: 2750,
     bookmarksCount: 88,
@@ -203,7 +191,6 @@ The Unhurried Web proposes an alternative paradigm:
 
 When we build digital spaces with these values, we invite readers to engage with nuance, patience, and reciprocal respect.`,
     pullQuote: 'A good publication knows when to end, granting the reader the dignity of completion.',
-    category: 'Creative Process',
     publishedAt: 'Jul 02, 2026',
     dateIso: '2026-07-02',
     readTime: '5 min read',
@@ -212,7 +199,6 @@ When we build digital spaces with these values, we invite readers to engage with
     coverImage: typographyImg,
     coverCaption: 'Figure 7. Hand-set letterpress forms and typographic galley proofs.',
     author: PRIMARY_AUTHOR,
-    tags: ['Slow Web', 'Editorial Manifesto', 'Publishing', 'Digital Wellbeing'],
     likes: 310,
     views: 4200,
     bookmarksCount: 165,
@@ -268,6 +254,10 @@ export const BLUEPRINT_SPEC = {
       {
         title: 'Connect Firebase Firestore for Dynamic CMS',
         prompt: 'Transform this blog blueprint to persist articles and subscriber emails to Firebase Firestore. Add an authenticated admin dashboard where I can write, edit, and publish new markdown essays directly with preview mode.',
+      },
+      {
+        title: 'WordPress Theme Export & Headless REST API Sync',
+        prompt: 'Export the complete atelier-editorial.zip WordPress theme with Newsreader typography, reading-time indicators, and drop-caps, or sync live articles directly from WordPress via /wp-json/wp/v2/posts.',
       },
       {
         title: 'Generate Full AI Articles with Gemini API',

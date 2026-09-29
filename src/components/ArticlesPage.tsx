@@ -30,8 +30,7 @@ export const ArticlesPage: React.FC<ArticlesPageProps> = ({
           searchQuery.trim() === '' ||
           article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           article.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          article.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+          article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesSearch;
       })
       .sort((a, b) => {
@@ -88,7 +87,7 @@ export const ArticlesPage: React.FC<ArticlesPageProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search essays, keywords, or topics..."
+              placeholder="Search monographs, titles, or prose..."
               className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-stone-900 focus:border-stone-900 transition-all font-sans-body"
             />
             {searchQuery && (

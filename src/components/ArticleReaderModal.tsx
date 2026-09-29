@@ -325,21 +325,6 @@ export const ArticleReaderModal: React.FC<ArticleReaderModalProps> = ({
             })}
           </div>
 
-          {/* Tags */}
-          <div className="pt-8 border-t border-stone-200 flex flex-wrap items-center gap-2">
-            <span className="text-xs font-mono-code text-stone-400 uppercase tracking-wider mr-1">
-              Keywords:
-            </span>
-            {article.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-mono-code text-stone-600 bg-stone-100 px-2.5 py-1 rounded"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-
           {/* Author Card & Next Reading */}
           <div className="pt-8 border-t border-stone-200 space-y-6">
             <div className="p-6 rounded-xl bg-stone-100/70 border border-stone-200 flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">

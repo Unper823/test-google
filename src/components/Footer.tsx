@@ -1,15 +1,17 @@
 import React from 'react';
 import { PageTab } from '../types/blog';
-import { Compass, ArrowUp, Rss } from 'lucide-react';
+import { Compass, ArrowUp, Rss, FolderArchive } from 'lucide-react';
 
 interface FooterProps {
   onNavigateTab: (tab: PageTab) => void;
   onOpenBlueprint: () => void;
+  onOpenWordPress?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigateTab,
   onOpenBlueprint,
+  onOpenWordPress,
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -86,9 +88,18 @@ export const Footer: React.FC<FooterProps> = ({
             <p className="text-xs text-stone-500 font-sans-body leading-relaxed">
               Explore the architectural schematic, JSON schemas, and ready-to-run prompt recipes.
             </p>
+            {onOpenWordPress && (
+              <button
+                onClick={onOpenWordPress}
+                className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-800 bg-[#F2EDE4] hover:bg-[#EAE3D6] rounded-lg transition-colors border border-stone-300 cursor-pointer w-full justify-center"
+              >
+                <FolderArchive className="w-3.5 h-3.5 text-stone-700" />
+                <span>WordPress Theme Package</span>
+              </button>
+            )}
             <button
               onClick={onOpenBlueprint}
-              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors border border-stone-200 cursor-pointer"
+              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors border border-stone-200 cursor-pointer w-full justify-center"
             >
               <Compass className="w-3.5 h-3.5 text-stone-600" />
               <span>Open Blueprint Guide</span>

@@ -25,7 +25,6 @@ export interface Article {
   excerpt: string;
   content: string;
   pullQuote?: string;
-  category?: string;
   publishedAt: string;
   dateIso: string;
   readTime: string;
@@ -34,7 +33,7 @@ export interface Article {
   coverImage: string;
   coverCaption?: string;
   author: Author;
-  tags: string[];
+  tags?: string[];
   likes: number;
   views: number;
   bookmarksCount?: number;

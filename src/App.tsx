@@ -15,6 +15,7 @@ import { ArticleReaderModal } from './components/ArticleReaderModal';
 import { BlueprintModal } from './components/BlueprintModal';
 import { NewArticleModal } from './components/NewArticleModal';
 import { AuthorAuthModal } from './components/AuthorAuthModal';
+import { WordPressModal } from './components/WordPressModal';
 import { Footer } from './components/Footer';
 
 const STORAGE_KEY = 'atelier_blog_articles_v1';
@@ -28,7 +29,10 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return parsed.map((item) => {
+            const { tags, category, ...cleanItem } = item;
+            return cleanItem as Article;
+          });
         }
       }
     } catch {
@@ -49,6 +53,7 @@ export default function App() {
 
   const [readingArticle, setReadingArticle] = useState<Article | null>(null);
   const [blueprintOpen, setBlueprintOpen] = useState(false);
+  const [wordPressModalOpen, setWordPressModalOpen] = useState(false);
   const [newArticleOpen, setNewArticleOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
@@ -149,6 +154,22 @@ export default function App() {
     return articles[0];
   };
 
+  // Import articles fetched from WordPress REST API
+  const handleImportWordPressArticles = (importedArticles: Article[]) => {
+    if (!importedArticles || importedArticles.length === 0) return;
+    setArticles((prev) => {
+      const existingIds = new Set(importedArticles.map((a) => a.id));
+      const remaining = prev.filter((a) => !existingIds.has(a.id));
+      const merged = [...importedArticles, ...remaining];
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      } catch {
+        // Ignored
+      }
+      return merged;
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 selection:bg-stone-200">
       {/* Top Navigation conforming to Top Bar Contract */}
@@ -156,6 +177,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenBlueprint={() => setBlueprintOpen(true)}
+        onOpenWordPress={() => setWordPressModalOpen(true)}
         onOpenNewArticle={() => {
           if (isAuthorAuthenticated) {
             setNewArticleOpen(true);
@@ -224,6 +246,7 @@ export default function App() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         onOpenBlueprint={() => setBlueprintOpen(true)}
+        onOpenWordPress={() => setWordPressModalOpen(true)}
       />
 
       {/* Deep Reading View Modal */}
@@ -241,6 +264,13 @@ export default function App() {
       <BlueprintModal
         isOpen={blueprintOpen}
         onClose={() => setBlueprintOpen(false)}
+      />
+
+      {/* WordPress Theme Exporter & Headless REST API Sync Modal */}
+      <WordPressModal
+        isOpen={wordPressModalOpen}
+        onClose={() => setWordPressModalOpen(false)}
+        onImportWordPressArticles={handleImportWordPressArticles}
       />
 
       {/* New Article / Monograph Creator Modal (Guarded) */}
