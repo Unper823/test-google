@@ -1,0 +1,120 @@
+{
+  "version": "0.4",
+  "title": "Atelier - Global Header",
+  "type": "header",
+  "content": [
+    {
+      "id": "atelier_header_container",
+      "elType": "container",
+      "settings": {
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1152
+        },
+        "flex_direction": "row",
+        "flex_justify_content": "space-between",
+        "flex_align_items": "center",
+        "padding": {
+          "unit": "px",
+          "top": 16,
+          "right": 24,
+          "bottom": 16,
+          "left": 24
+        },
+        "background_background": "classic",
+        "background_color": "#FAF8F5E6",
+        "border_border": "solid",
+        "border_width": {
+          "unit": "px",
+          "top": 0,
+          "right": 0,
+          "bottom": 1,
+          "left": 0
+        },
+        "border_color": "#E7E5E4",
+        "motion_fx_sticky": "top",
+        "custom_css": "selector { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; }"
+      },
+      "elements": [
+        {
+          "id": "brand_anchor",
+          "elType": "widget",
+          "widgetType": "heading",
+          "settings": {
+            "title": "<a href=\"/\" style=\"text-decoration:none; color:#1C1917;\"><span style=\"font-family:'Newsreader', serif; font-size:24px; font-weight:500; letter-spacing:-0.5px; display:block;\">ATELIER</span><span style=\"font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:2px; color:#A8A29E; display:block;\">Journal &amp; Blueprint</span></a>"
+          }
+        },
+        {
+          "id": "site_navigation",
+          "elType": "widget",
+          "widgetType": "nav-menu",
+          "settings": {
+            "layout": "horizontal",
+            "menu": "primary-menu",
+            "typography_typography": "custom",
+            "typography_font_family": "Plus Jakarta Sans",
+            "typography_font_size": {
+              "unit": "px",
+              "size": 13
+            },
+            "typography_font_weight": "500",
+            "color_menu_item": "#57534E",
+            "color_menu_item_hover": "#1C1917",
+            "color_menu_item_active": "#1C1917",
+            "pointer": "underline",
+            "pointer_color_menu_item_active": "#1C1917"
+          }
+        },
+        {
+          "id": "header_actions_container",
+          "elType": "container",
+          "settings": {
+            "flex_direction": "row",
+            "flex_align_items": "center",
+            "gap": {
+              "unit": "px",
+              "size": 10
+            }
+          },
+          "elements": [
+            {
+              "id": "btn_blueprint_guide",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Blueprint Guide",
+                "link": {
+                  "url": "#blueprint"
+                },
+                "button_type": "default",
+                "typography_font_family": "Plus Jakarta Sans",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 12
+                },
+                "typography_font_weight": "500",
+                "button_text_color": "#FFFFFF",
+                "background_color": "#1C1917",
+                "border_radius": {
+                  "unit": "px",
+                  "top": 8,
+                  "right": 8,
+                  "bottom": 8,
+                  "left": 8
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": 8,
+                  "right": 14,
+                  "bottom": 8,
+                  "left": 14
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "version": "0.4",
+  "title": "Atelier Editorial - Global Style Kit",
+  "type": "kit",
+  "settings": {
+    "site_name": "Atelier Editorial",
+    "site_description": "Archival Blog & Website Blueprint",
+    "container_width": {
+      "unit": "px",
+      "size": 1152
+    },
+    "space_between_widgets": {
+      "unit": "px",
+      "size": 24
+    },
+    "page_title_selector": "h1.entry-title",
+    "viewport_tablet": 768,
+    "viewport_mobile": 480,
+    "system_colors": [
+      {
+        "_id": "primary",
+        "title": "Ink Obsidian (Text)",
+        "color": "#1C1917"
+      },
+      {
+        "_id": "secondary",
+        "title": "Ink Muted (Subtitles)",
+        "color": "#57534E"
+      },
+      {
+        "_id": "text",
+        "title": "Body Prose",
+        "color": "#44403C"
+      },
+      {
+        "_id": "accent",
+        "title": "Stone Divider",
+        "color": "#E7E5E4"
+      }
+    ],
+    "custom_colors": [
+      {
+        "_id": "canvas_cream",
+        "title": "Canvas Linen",
+        "color": "#FAF8F5"
+      },
+      {
+        "_id": "card_white",
+        "title": "Surface White",
+        "color": "#FFFFFF"
+      },
+      {
+        "_id": "oatmeal_wp",
+        "title": "Oatmeal Accent",
+        "color": "#F2EDE4"
+      },
+      {
+        "_id": "metadata_mono",
+        "title": "Ledger Metadata",
+        "color": "#78716C"
+      },
+      {
+        "_id": "emerald_auth",
+        "title": "Author Desk Emerald",
+        "color": "#065F46"
+      },
+      {
+        "_id": "rose_like",
+        "title": "Monograph Rose",
+        "color": "#BE123C"
+      }
+    ],
+    "system_typography": [
+      {
+        "_id": "primary",
+        "title": "Display Serif (Newsreader)",
+        "typography_font_family": "Newsreader",
+        "typography_font_weight": "400",
+        "typography_line_height": {
+          "unit": "em",
+          "size": 1.2
+        }
+      },
+      {
+        "_id": "secondary",
+        "title": "Subhead Serif Italic",
+        "typography_font_family": "Newsreader",
+        "typography_font_weight": "400",
+        "typography_font_style": "italic",
+        "typography_line_height": {
+          "unit": "em",
+          "size": 1.35
+        }
+      },
+      {
+        "_id": "text",
+        "title": "Body Sans (Plus Jakarta Sans)",
+        "typography_font_family": "Plus Jakarta Sans",
+        "typography_font_weight": "400",
+        "typography_line_height": {
+          "unit": "em",
+          "size": 1.75
+        }
+      },
+      {
+        "_id": "accent",
+        "title": "Ledger Monospace (JetBrains Mono)",
+        "typography_font_family": "JetBrains Mono",
+        "typography_font_weight": "500",
+        "typography_text_transform": "uppercase",
+        "typography_letter_spacing": {
+          "unit": "px",
+          "size": 1.2
+        }
+      }
+    ]
+  },
+  "content": []
+}

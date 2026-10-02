@@ -12,10 +12,14 @@ import {
   ExternalLink,
   ShieldCheck,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Layers,
+  Code2,
+  FileJson
 } from 'lucide-react';
 import JSZip from 'jszip';
 import { ALL_WP_THEME_FILES, WPThemeFile } from '../data/wordpressThemeFiles';
+import { ALL_ELEMENTOR_TEMPLATES, ElementorTemplateFile } from '../data/elementorTemplates';
 import { Article } from '../types/blog';
 
 interface WordPressModalProps {
@@ -29,11 +33,17 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
   onClose,
   onImportWordPressArticles,
 }) => {
-  const [activeTab, setActiveTab] = useState<'download' | 'files' | 'headless' | 'audit'>('download');
+  const [activeTab, setActiveTab] = useState<'elementor' | 'download' | 'files' | 'headless' | 'audit'>('elementor');
   const [selectedFile, setSelectedFile] = useState<WPThemeFile>(ALL_WP_THEME_FILES[0]);
   const [copiedFilename, setCopiedFilename] = useState<string | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+
+  // Elementor State
+  const [selectedElementor, setSelectedElementor] = useState<ElementorTemplateFile>(ALL_ELEMENTOR_TEMPLATES[0]);
+  const [copiedElementorId, setCopiedElementorId] = useState<string | null>(null);
+  const [isDownloadingElementor, setIsDownloadingElementor] = useState(false);
+  const [elementorDownloadSuccess, setElementorDownloadSuccess] = useState(false);
 
   // Headless WordPress state
   const [wpUrl, setWpUrl] = useState('');
@@ -87,6 +97,61 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
     } finally {
       setIsDownloading(false);
     }
+  };
+
+  const handleCopyElementorCode = async (template: ElementorTemplateFile) => {
+    try {
+      await navigator.clipboard.writeText(template.jsonContent);
+      setCopiedElementorId(template.id);
+      setTimeout(() => setCopiedElementorId(null), 2500);
+    } catch {
+      // Fallback
+    }
+  };
+
+  const handleDownloadElementorZip = async () => {
+    setIsDownloadingElementor(true);
+    setElementorDownloadSuccess(false);
+
+    try {
+      const zip = new JSZip();
+      const folder = zip.folder('atelier-elementor-kit');
+
+      ALL_ELEMENTOR_TEMPLATES.forEach((tmpl) => {
+        folder?.file(tmpl.filename, tmpl.jsonContent);
+      });
+
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'atelier-elementor-kit.zip';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setElementorDownloadSuccess(true);
+      setTimeout(() => setElementorDownloadSuccess(false), 4000);
+    } catch (err) {
+      console.error('Failed to generate Elementor zip client-side, falling back to static link', err);
+      window.location.href = '/atelier-elementor-kit.zip';
+    } finally {
+      setIsDownloadingElementor(false);
+    }
+  };
+
+  const handleDownloadIndividualElementorFile = (template: ElementorTemplateFile) => {
+    const mimeType = template.type === 'css' ? 'text/css' : 'application/json';
+    const blob = new Blob([template.jsonContent], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = template.filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const handleFetchFromWordPress = async (urlToFetch: string) => {
@@ -292,10 +357,25 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex border-b border-stone-200 bg-stone-50 px-6 gap-2 pt-2">
+        <div className="flex border-b border-stone-200 bg-stone-50 px-6 gap-2 pt-2 overflow-x-auto">
+          <button
+            onClick={() => setActiveTab('elementor')}
+            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
+              activeTab === 'elementor'
+                ? 'border-stone-900 text-stone-900 font-semibold'
+                : 'border-transparent text-stone-500 hover:text-stone-800'
+            }`}
+          >
+            <Layers className="w-4 h-4 text-emerald-700" />
+            <span className="flex items-center gap-1.5">
+              <span>Elementor Kit &amp; JSON</span>
+              <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-mono-code font-bold">New</span>
+            </span>
+          </button>
+
           <button
             onClick={() => setActiveTab('download')}
-            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === 'download'
                 ? 'border-stone-900 text-stone-900 font-semibold'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
@@ -307,7 +387,7 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
 
           <button
             onClick={() => setActiveTab('files')}
-            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === 'files'
                 ? 'border-stone-900 text-stone-900 font-semibold'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
@@ -319,7 +399,7 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
 
           <button
             onClick={() => setActiveTab('headless')}
-            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === 'headless'
                 ? 'border-stone-900 text-stone-900 font-semibold'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
@@ -331,7 +411,7 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
 
           <button
             onClick={() => setActiveTab('audit')}
-            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
               activeTab === 'audit'
                 ? 'border-stone-900 text-stone-900 font-semibold'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
@@ -344,7 +424,255 @@ export const WordPressModal: React.FC<WordPressModalProps> = ({
 
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto flex-1 space-y-6">
-          
+
+          {/* TAB 0: ELEMENTOR KIT & TEMPLATES */}
+          {activeTab === 'elementor' && (
+            <div className="space-y-6">
+              {/* Elementor Highlight Card */}
+              <div className="bg-white border border-stone-200 rounded-xl p-6 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-serif-display text-2xl font-normal text-stone-900">
+                      atelier-elementor-kit.zip
+                    </span>
+                    <span className="text-[11px] font-mono-code bg-emerald-100 border border-emerald-300 text-emerald-800 px-2 py-0.5 rounded font-semibold">
+                      Elementor Pro &amp; Free Ready
+                    </span>
+                  </div>
+                  <p className="text-sm text-stone-600 max-w-xl font-sans-body">
+                    Complete conversion of the Atelier design into official Elementor JSON templates. Includes Global Style Kit (Newsreader, Plus Jakarta Sans, JetBrains Mono, #FAF8F5 palette), Theme Builder templates (Header, Footer, Single Post with drop caps, Archive Ledger), and full page templates.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    <span className="text-xs font-mono-code bg-stone-100 px-2 py-0.5 rounded text-stone-600">
+                      9 Template Assets
+                    </span>
+                    <span className="text-xs font-mono-code bg-stone-100 px-2 py-0.5 rounded text-stone-600">
+                      Flexbox Containers
+                    </span>
+                    <span className="text-xs font-mono-code bg-stone-100 px-2 py-0.5 rounded text-stone-600">
+                      Zero Categories / Tags
+                    </span>
+                    <span className="text-xs font-mono-code bg-stone-100 px-2 py-0.5 rounded text-stone-600">
+                      65-Char Optical Measure
+                    </span>
+                  </div>
+                </div>
+
+                <div className="shrink-0 flex flex-col gap-2 w-full md:w-auto">
+                  <button
+                    onClick={handleDownloadElementorZip}
+                    disabled={isDownloadingElementor}
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white text-xs font-medium rounded-lg shadow-sm transition-all cursor-pointer disabled:opacity-50"
+                  >
+                    {isDownloadingElementor ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        <span>Packaging Elementor Kit...</span>
+                      </>
+                    ) : elementorDownloadSuccess ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span>Downloaded Elementor Kit!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Download className="w-4 h-4" />
+                        <span>Download Elementor Kit (.zip)</span>
+                      </>
+                    )}
+                  </button>
+
+                  <a
+                    href="/atelier-elementor-kit.zip"
+                    download="atelier-elementor-kit.zip"
+                    className="text-center text-[11px] text-stone-500 hover:text-stone-800 underline font-mono-code"
+                  >
+                    Direct mirror link (.zip)
+                  </a>
+                </div>
+              </div>
+
+              {/* Theme Builder Display Conditions Reference */}
+              <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono-code uppercase font-semibold text-stone-800 flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                    <span>Elementor Theme Builder Display Conditions</span>
+                  </span>
+                  <span className="text-[11px] font-mono-code text-stone-500">
+                    Elementor Pro Settings
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                  <div className="bg-white p-3 rounded-lg border border-stone-200">
+                    <span className="text-[10px] font-mono-code text-stone-400 uppercase block">Template</span>
+                    <strong className="text-stone-900 block font-serif-display text-sm">Header</strong>
+                    <span className="text-emerald-700 font-mono-code text-[11px] mt-1 block">Include: Entire Site</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-lg border border-stone-200">
+                    <span className="text-[10px] font-mono-code text-stone-400 uppercase block">Template</span>
+                    <strong className="text-stone-900 block font-serif-display text-sm">Footer</strong>
+                    <span className="text-emerald-700 font-mono-code text-[11px] mt-1 block">Include: Entire Site</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-lg border border-stone-200">
+                    <span className="text-[10px] font-mono-code text-stone-400 uppercase block">Template</span>
+                    <strong className="text-stone-900 block font-serif-display text-sm">Single Monograph</strong>
+                    <span className="text-emerald-700 font-mono-code text-[11px] mt-1 block">Include: All Posts</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-lg border border-stone-200">
+                    <span className="text-[10px] font-mono-code text-stone-400 uppercase block">Template</span>
+                    <strong className="text-stone-900 block font-serif-display text-sm">Archive Ledger</strong>
+                    <span className="text-emerald-700 font-mono-code text-[11px] mt-1 block">Include: All Archives</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Template Explorer (2 columns) */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                {/* Left: Template Selector List */}
+                <div className="md:col-span-5 bg-white border border-stone-200 rounded-xl overflow-hidden shadow-2xs divide-y divide-stone-100">
+                  <div className="p-3 bg-stone-100/70 border-b border-stone-200 flex items-center justify-between">
+                    <span className="text-xs font-mono-code uppercase font-semibold text-stone-800">
+                      Elementor Template Files ({ALL_ELEMENTOR_TEMPLATES.length})
+                    </span>
+                    <span className="text-[10px] font-mono-code text-stone-500">
+                      Click to inspect
+                    </span>
+                  </div>
+
+                  <div className="max-h-[380px] overflow-y-auto divide-y divide-stone-100">
+                    {ALL_ELEMENTOR_TEMPLATES.map((tmpl) => {
+                      const isSelected = selectedElementor.id === tmpl.id;
+                      return (
+                        <button
+                          key={tmpl.id}
+                          onClick={() => setSelectedElementor(tmpl)}
+                          className={`w-full text-left p-3 text-xs transition-colors flex items-start justify-between cursor-pointer ${
+                            isSelected
+                              ? 'bg-stone-100 text-stone-900 font-medium'
+                              : 'hover:bg-stone-50 text-stone-600'
+                          }`}
+                        >
+                          <div className="space-y-0.5 pr-2">
+                            <div className="flex items-center gap-1.5">
+                              {tmpl.type === 'css' ? (
+                                <Code2 className="w-3.5 h-3.5 text-stone-500" />
+                              ) : (
+                                <FileJson className="w-3.5 h-3.5 text-emerald-600" />
+                              )}
+                              <span className="font-medium text-stone-900">{tmpl.name}</span>
+                            </div>
+                            <span className="font-mono-code text-[10px] text-stone-400 block truncate">
+                              {tmpl.filename}
+                            </span>
+                          </div>
+
+                          <span className={`text-[10px] font-mono-code uppercase px-1.5 py-0.5 rounded shrink-0 ${
+                            tmpl.type === 'kit'
+                              ? 'bg-amber-100 text-amber-800'
+                              : tmpl.type === 'css'
+                              ? 'bg-blue-100 text-blue-800'
+                              : 'bg-stone-100 text-stone-700'
+                          }`}>
+                            {tmpl.type}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Right: Code Inspector */}
+                <div className="md:col-span-7 bg-white border border-stone-200 rounded-xl overflow-hidden shadow-2xs flex flex-col">
+                  {/* File Header */}
+                  <div className="p-3 bg-stone-100/70 border-b border-stone-200 flex items-center justify-between">
+                    <div>
+                      <span className="font-mono-code text-xs font-semibold text-stone-900 block">
+                        {selectedElementor.filename}
+                      </span>
+                      <span className="text-[11px] text-stone-500 font-sans-body">
+                        {selectedElementor.description}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => handleDownloadIndividualElementorFile(selectedElementor)}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-stone-700 bg-white border border-stone-200 hover:bg-stone-50 rounded transition-colors cursor-pointer"
+                        title="Download this template"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span className="hidden sm:inline">Save</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleCopyElementorCode(selectedElementor)}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-stone-700 bg-white border border-stone-200 hover:bg-stone-50 rounded transition-colors cursor-pointer"
+                        title="Copy code to clipboard"
+                      >
+                        {copiedElementorId === selectedElementor.id ? (
+                          <>
+                            <Check className="w-3 h-3 text-emerald-600" />
+                            <span className="text-emerald-700">Copied</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Code Box */}
+                  <pre className="p-4 bg-stone-900 text-stone-100 text-xs font-mono-code overflow-x-auto max-h-[380px] leading-relaxed selection:bg-stone-700">
+                    <code>{selectedElementor.jsonContent}</code>
+                  </pre>
+                </div>
+              </div>
+
+              {/* Step-by-Step Import Instructions */}
+              <div className="bg-white border border-stone-200 rounded-xl p-5 space-y-4">
+                <h4 className="font-serif-display text-lg text-stone-900">
+                  How to Import &amp; Activate in WordPress with Elementor
+                </h4>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-sans-body">
+                  <div className="p-4 bg-stone-50 rounded-lg border border-stone-200 space-y-2">
+                    <span className="w-6 h-6 rounded-full bg-stone-900 text-white font-mono-code flex items-center justify-center text-xs font-bold">
+                      1
+                    </span>
+                    <strong className="text-stone-900 block font-medium">Import JSON Templates</strong>
+                    <p className="text-stone-600 leading-relaxed">
+                      In your WordPress dashboard, navigate to <strong>Templates &rarr; Saved Templates &rarr; Import Templates</strong>. Upload the individual JSON files or import the full kit under <strong>Elementor &rarr; Tools &rarr; Import / Export Kit</strong>.
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-stone-50 rounded-lg border border-stone-200 space-y-2">
+                    <span className="w-6 h-6 rounded-full bg-stone-900 text-white font-mono-code flex items-center justify-center text-xs font-bold">
+                      2
+                    </span>
+                    <strong className="text-stone-900 block font-medium">Assign Theme Builder Conditions</strong>
+                    <p className="text-stone-600 leading-relaxed">
+                      Go to <strong>Templates &rarr; Theme Builder</strong>. Assign the Header and Footer to <em>Entire Site</em>, the Single Post template to <em>All Posts</em>, and the Archive template to <em>All Archives</em>.
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-stone-50 rounded-lg border border-stone-200 space-y-2">
+                    <span className="w-6 h-6 rounded-full bg-stone-900 text-white font-mono-code flex items-center justify-center text-xs font-bold">
+                      3
+                    </span>
+                    <strong className="text-stone-900 block font-medium">Add Elementor Custom CSS</strong>
+                    <p className="text-stone-600 leading-relaxed">
+                      Copy the CSS from <code className="bg-stone-200 px-1 py-0.5 rounded font-mono-code">atelier-elementor-custom-css.css</code> into <strong>Elementor &rarr; Site Settings &rarr; Custom CSS</strong> to enable the drop-cap and 65-character optical line measure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* TAB 1: DOWNLOAD THEME */}
           {activeTab === 'download' && (
             <div className="space-y-6">

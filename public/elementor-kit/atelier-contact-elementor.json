@@ -1,0 +1,170 @@
+{
+  "version": "0.4",
+  "title": "Atelier - Contact & Registry",
+  "type": "page",
+  "content": [
+    {
+      "id": "contact_container",
+      "elType": "container",
+      "settings": {
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1152
+        },
+        "padding": {
+          "unit": "px",
+          "top": 48,
+          "right": 24,
+          "bottom": 64,
+          "left": 24
+        },
+        "flex_direction": "row",
+        "gap": {
+          "unit": "px",
+          "size": 48
+        }
+      },
+      "elements": [
+        {
+          "id": "contact_form_col",
+          "elType": "container",
+          "settings": {
+            "width": {
+              "unit": "%",
+              "size": 60
+            },
+            "padding": {
+              "unit": "px",
+              "top": 32,
+              "right": 32,
+              "bottom": 32,
+              "left": 32
+            },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_radius": {
+              "unit": "px",
+              "top": 16,
+              "right": 16,
+              "bottom": 16,
+              "left": 16
+            },
+            "border_border": "solid",
+            "border_width": {
+              "unit": "px",
+              "top": 1,
+              "right": 1,
+              "bottom": 1,
+              "left": 1
+            },
+            "border_color": "#E7E5E4"
+          },
+          "elements": [
+            {
+              "id": "contact_form_heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Letters to the Editorial Desk",
+                "typography_font_family": "Newsreader",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 28
+                },
+                "title_color": "#1C1917"
+              }
+            },
+            {
+              "id": "contact_form_widget",
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Editorial Desk Inquiry",
+                "form_fields": [
+                  {
+                    "_id": "name",
+                    "field_label": "Your Name",
+                    "field_type": "text",
+                    "required": "true"
+                  },
+                  {
+                    "_id": "email",
+                    "field_label": "Email Address",
+                    "field_type": "email",
+                    "required": "true"
+                  },
+                  {
+                    "_id": "message",
+                    "field_label": "Your Correspondence",
+                    "field_type": "textarea",
+                    "required": "true"
+                  }
+                ],
+                "button_text": "Send Correspondence",
+                "button_background_color": "#1C1917",
+                "button_text_color": "#FFFFFF"
+              }
+            }
+          ]
+        },
+        {
+          "id": "contact_faq_col",
+          "elType": "container",
+          "settings": {
+            "width": {
+              "unit": "%",
+              "size": 40
+            }
+          },
+          "elements": [
+            {
+              "id": "faq_heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Editorial FAQ",
+                "typography_font_family": "Newsreader",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 24
+                },
+                "title_color": "#1C1917",
+                "margin": {
+                  "unit": "px",
+                  "top": 0,
+                  "right": 0,
+                  "bottom": 16,
+                  "left": 0
+                }
+              }
+            },
+            {
+              "id": "faq_accordion",
+              "elType": "widget",
+              "widgetType": "accordion",
+              "settings": {
+                "tabs": [
+                  {
+                    "tab_title": "Do you accept unsolicited essay submissions?",
+                    "tab_content": "We welcome scholarly and practitioner submissions focused on digital typography, spatial computing, and architectural theory."
+                  },
+                  {
+                    "tab_title": "How frequently does Atelier publish new writings?",
+                    "tab_content": "We operate on a fortnightly editorial cadence (one substantive monograph every two weeks)."
+                  }
+                ],
+                "title_color": "#1C1917",
+                "typography_title_font_family": "Plus Jakarta Sans",
+                "typography_title_font_size": {
+                  "unit": "px",
+                  "size": 14
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

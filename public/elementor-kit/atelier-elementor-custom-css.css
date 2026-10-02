@@ -1,0 +1,87 @@
+/* ==========================================================================
+   ATELIER EDITORIAL — ELEMENTOR CUSTOM CSS SPECIFICATION
+   Paste into: Elementor -> Site Settings -> Custom CSS (or WP Customizer)
+   ========================================================================== */
+
+/* 1. Google Fonts Import (if not enqueued by your theme) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* 2. Global Canvas & Ink Variables */
+:root {
+  --atelier-canvas: #FAF8F5;
+  --atelier-white: #FFFFFF;
+  --atelier-ink-primary: #1C1917;
+  --atelier-ink-muted: #57534E;
+  --atelier-ink-body: #44403C;
+  --atelier-border: #E7E5E4;
+  --atelier-oatmeal: #F2EDE4;
+  --atelier-emerald: #065F46;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--atelier-canvas) !important;
+  color: var(--atelier-ink-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 3. Editorial Drop-Cap (Applied to first paragraph of single posts) */
+.elementor-widget-theme-post-content p:first-of-type::first-letter,
+.editorial-drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.75rem;
+  line-height: 0.85;
+  float: left;
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  color: var(--atelier-ink-primary);
+}
+
+/* 4. Classical 65-Character Optical Measure */
+.elementor-widget-theme-post-content {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.elementor-widget-theme-post-content p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--atelier-ink-body);
+  margin-bottom: 1.75rem;
+}
+
+/* 5. Editorial Pull-Quotes */
+.elementor-widget-theme-post-content blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.625rem;
+  line-height: 1.35;
+  color: var(--atelier-ink-primary);
+  border-top: 1px solid var(--atelier-border);
+  border-bottom: 1px solid var(--atelier-border);
+  border-left: none;
+  padding: 1.75rem 1rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+/* 6. Unboxed Zero-Pill Post Metadata */
+.elementor-post-info__item,
+.elementor-post__meta-data {
+  font-family: var(--font-mono) !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #78716C !important;
+}
+
+/* 7. Hover Transitions on Cards */
+.elementor-post:hover .elementor-post__thumbnail img {
+  transform: scale(1.02);
+  transition: transform 0.4s ease-out;
+}

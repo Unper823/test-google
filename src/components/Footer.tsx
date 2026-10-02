@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
                 className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-800 bg-[#F2EDE4] hover:bg-[#EAE3D6] rounded-lg transition-colors border border-stone-300 cursor-pointer w-full justify-center"
               >
                 <FolderArchive className="w-3.5 h-3.5 text-stone-700" />
-                <span>WordPress Theme Package</span>
+                <span>WordPress &amp; Elementor Kit</span>
               </button>
             )}
             <button

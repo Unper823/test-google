@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PageTab } from '../types/blog';
 import { OWNER_SECURITY_CONFIG } from '../data/blogData';
-import { Compass, PenLine, Menu, X, Lock, ShieldCheck, FolderArchive } from 'lucide-react';
+import { Compass, PenLine, Menu, X, Lock, ShieldCheck, FolderArchive, Layers } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: PageTab;
@@ -116,11 +116,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onOpenWordPress}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-800 bg-[#F2EDE4] hover:bg-[#EAE3D6] rounded-lg transition-colors border border-stone-300 cursor-pointer whitespace-nowrap shadow-2xs"
-            title="Download WordPress Theme (.zip) or connect Headless WordPress REST API"
+            title="Download WordPress Theme (.zip), Elementor JSON Kit, or connect Headless WordPress REST API"
           >
-            <FolderArchive className="w-3.5 h-3.5 text-stone-700" />
-            <span className="hidden sm:inline">WordPress Theme</span>
-            <span className="sm:hidden">WordPress</span>
+            <Layers className="w-3.5 h-3.5 text-emerald-800" />
+            <span className="hidden sm:inline">WordPress &amp; Elementor</span>
+            <span className="sm:hidden">WP / Elementor</span>
           </button>
 
           <button
