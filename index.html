@@ -3,53 +3,415 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atelier — Editorial Blog & Website Blueprint</title>
+    <title>Atelier — Editorial Blog &amp; Website Blueprint</title>
     <meta name="description" content="A refined 4-page editorial blog blueprint featuring new article highlights, searchable archives, reader view, author profile, and AI Studio customization guide." />
-    <meta property="og:title" content="Atelier — Editorial Blog & Website Blueprint" />
+    <meta property="og:title" content="Atelier — Editorial Blog &amp; Website Blueprint" />
     <meta property="og:description" content="A refined 4-page editorial blog blueprint featuring new article highlights, searchable archives, reader view, author profile, and AI Studio customization guide." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <script>
-      (function() {
-        try {
-          var targetGlobal = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : self);
-          var activeFetch = targetGlobal.fetch;
-
-          var makeConfigurable = function(target) {
-            if (!target) return false;
-            try {
-              Object.defineProperty(target, 'fetch', {
-                get: function() {
-                  return activeFetch;
-                },
-                set: function(fn) {
-                  activeFetch = fn;
-                },
-                configurable: true,
-                enumerable: true
-              });
-              return true;
-            } catch (err) {
-              return false;
-            }
-          };
-
-          makeConfigurable(targetGlobal);
-          if (typeof Window !== 'undefined' && Window.prototype) {
-            makeConfigurable(Window.prototype);
-          }
-        } catch (e) {
-          // Pass-through
-        }
-      })();
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
   </head>
-  <body class="bg-[#FAF8F5] text-stone-900 antialiased selection:bg-stone-200">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body>
+    <!-- Top Editorial Ledger Masthead Ticker -->
+    <aside class="top-masthead-ticker" aria-label="Publication Ledger Status">
+      <div class="site-container">
+        <div class="ticker-inner">
+          <div class="ticker-left">
+            <span class="ticker-dot"></span>
+            <span class="ticker-text"><strong>Vol. IV &bull; No. 2</strong> / Autumn Archival Ledger</span>
+            <span class="ticker-divider">&bull;</span>
+            <span class="ticker-freq">Fortnightly Release</span>
+          </div>
+          <div class="ticker-right">
+            <span class="ticker-badge">Sole Author: Side Atelier</span>
+            <span class="ticker-divider">&bull;</span>
+            <span class="ticker-location">Copenhagen &bull; Zurich</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Sticky Site Header -->
+    <header class="site-header" id="site-header">
+      <div class="site-container">
+        <div class="header-inner">
+          <!-- Brand & Author Pill -->
+          <div class="header-brand-group">
+            <a href="#ledger" class="brand-link">
+              <span class="brand-title">ATELIER</span>
+              <span class="brand-subtitle">Journal &bull; Archival Blueprint</span>
+            </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="site-navigation" id="site-navigation" aria-label="Primary Editorial Navigation">
+            <ul class="nav-menu">
+              <li><a href="#ledger" class="nav-link active">Ledger</a></li>
+              <li><a href="#archive" class="nav-link">Archive</a></li>
+              <li><a href="#about" class="nav-link">About Curator</a></li>
+              <li><a href="#dispatch" class="nav-link">Dispatch</a></li>
+              <li>
+                <button type="button" class="btn-nav-contact" onclick="window.openContactModal();">
+                  Letters to Desk
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Header Right Action Buttons -->
+          <div class="header-actions">
+            <!-- Search Jump Button -->
+            <button type="button" class="btn-header-action" onclick="window.scrollToSearch();" aria-label="Search monographs">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span class="action-btn-text">Search</span>
+            </button>
+
+            <!-- Atmosphere Mode Toggle Button -->
+            <button type="button" class="btn-header-action btn-atmosphere" onclick="window.cycleTheme();" title="Toggle atmosphere (Day / Sepia / Dark)" aria-label="Toggle atmosphere">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              <span class="action-btn-text" id="theme-btn-label">Day</span>
+            </button>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button type="button" class="btn-mobile-toggle" id="btn-mobile-menu" onclick="window.toggleMobileMenu();" aria-label="Toggle menu" aria-expanded="false">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-hamburger"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-close" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation">
+          <ul class="mobile-nav-list">
+            <li><a href="#ledger" onclick="window.closeMobileMenu();">Archival Ledger</a></li>
+            <li><a href="#archive" onclick="window.closeMobileMenu();">Chronological Archive</a></li>
+            <li><a href="#about" onclick="window.closeMobileMenu();">About Curator</a></li>
+            <li><a href="#dispatch" onclick="window.closeMobileMenu();">Postal Dispatch</a></li>
+            <li>
+              <button type="button" class="mobile-btn-contact" onclick="window.closeMobileMenu(); window.openContactModal();">
+                Transmit Letter to Desk &rarr;
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Stream -->
+    <main class="site-main" id="content">
+      <div class="site-container">
+        
+        <!-- 1. Featured Asymmetric Lead Story (7:5) -->
+        <section class="hero-lead-section" id="ledger" aria-label="Lead Monograph">
+          <div id="hero-lead-mount">
+            <!-- Dynamically populated by main.ts -->
+          </div>
+        </section>
+
+        <!-- 2. Chronological Archive & Monograph Grid -->
+        <section class="archive-section" id="archive" aria-label="Chronological Archive">
+          <div class="ledger-section-header">
+            <div class="ledger-header-text">
+              <span class="archive-kicker-label">HISTORICAL LEDGER</span>
+              <h2 class="ledger-section-title">Chronological Archive</h2>
+              <p class="ledger-section-desc">Monographs &amp; essays published on contemporary typography, architecture, and slow prose.</p>
+            </div>
+            <div class="ledger-count-indicator" id="monographs-count-badge">
+              6 Archival Publications
+            </div>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="archive-controls-bar">
+            <!-- Search input with clear button -->
+            <div class="search-input-wrap">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="search" id="archive-search-input" placeholder="Search monograph titles, arguments, keywords..." aria-label="Search monographs" />
+              <button type="button" class="btn-clear-search" id="btn-clear-search" onclick="window.resetSearchInput();" style="display:none;" aria-label="Clear search">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <!-- Topic Filter Pills with clean horizontal scroll -->
+            <div class="topic-filters-pills" role="toolbar" aria-label="Topic filter buttons">
+              <button class="btn-filter-pill active" data-topic="all">All Folios</button>
+              <button class="btn-filter-pill" data-topic="typography">Typography</button>
+              <button class="btn-filter-pill" data-topic="ergonomics">Ergonomics</button>
+              <button class="btn-filter-pill" data-topic="cognitive">Cognitive Space</button>
+              <button class="btn-filter-pill" data-topic="architecture">Architecture</button>
+            </div>
+          </div>
+
+          <!-- Monograph Cards Mount -->
+          <div class="monographs-editorial-grid" id="monographs-grid-mount">
+            <!-- Populated dynamically by main.ts -->
+          </div>
+        </section>
+
+        <!-- 3. Curatorial Quote Break -->
+        <section class="curatorial-quote-break" aria-label="Curatorial Manifesto Quote">
+          <div class="quote-break-inner">
+            <span class="quote-ornament">&ldquo;</span>
+            <blockquote class="quote-break-text">
+              The highest virtue of an essay is not velocity, but resonance. Slow reading is the deliberate reclamation of cognitive sovereignty.
+            </blockquote>
+            <cite class="quote-break-author">&mdash; Side Atelier, Editorial Curator</cite>
+          </div>
+        </section>
+
+        <!-- 4. About the Curator Section -->
+        <section class="about-curator-section" id="about" aria-label="About Side Atelier">
+          <div class="curator-card">
+            <div class="curator-portrait-wrap">
+              <img src="/images/author_portrait_studio_1790188847154.jpg" alt="Side Atelier in the studio" loading="lazy" />
+            </div>
+            <div class="curator-content">
+              <span class="curator-bio-kicker">SOLE AUTHOR &bull; ARCHIVAL CURATOR</span>
+              <h3 class="curator-bio-title">Side Atelier</h3>
+              <p class="curator-bio-lead">
+                Architectural essayist, digital typographer, and founder of Atelier. Exploring the quiet intersection of cognitive restraint, classical book design, and humane software ergonomics.
+              </p>
+              <p class="curator-bio-details">
+                Dividing working time between Copenhagen and Zurich, Side Atelier writes long-form monographs drafting on unbleached Japanese cotton paper before transferring prose to the digital folio. The work advocates for the complete elimination of advertising networks, clickbait, and algorithmic noise from human reading spaces.
+              </p>
+              <!-- Curator Action Buttons: Perfectly placed & aligned -->
+              <div class="curator-actions">
+                <button type="button" class="btn-curator-primary" onclick="window.openContactModal();">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <span>Transmit Letter to Desk</span>
+                </button>
+                <a href="#archive" class="btn-curator-secondary">
+                  <span>Browse Author Ledger</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Postal Dispatch Subscription Box -->
+        <section class="postal-dispatch-section" id="dispatch" aria-label="Postal Dispatch Subscription">
+          <div class="postal-box-container">
+            <div class="postal-box-text">
+              <span class="postal-kicker">MONOGRAPH POSTAL DISPATCH</span>
+              <h3 class="postal-heading">Subscribe to the Fortnightly Monograph Ledger</h3>
+              <p class="postal-sub">New long-form essays delivered quietly to your inbox without promotional spam, tracking, or sponsored content.</p>
+            </div>
+            <div class="postal-box-form">
+              <form class="postal-subscribe-form" id="postal-subscribe-form">
+                <input type="email" placeholder="colleague@atelier.org" class="postal-email-input" required aria-label="Email address for dispatch" />
+                <button type="submit" class="postal-submit-btn">
+                  <span>Receive Dispatches</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </form>
+              <span class="postal-guarantee">&bull; Strictly zero advertising &bull; Unsubscribe at any time</span>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- .site-container -->
+    </main>
+
+    <!-- 8. Three-Column Directory Footer -->
+    <footer class="site-footer" id="site-footer">
+      <div class="site-container">
+        <div class="footer-columns-grid">
+          <!-- Col 1 -->
+          <div class="footer-col">
+            <span class="footer-brand-title">ATELIER</span>
+            <p class="footer-brand-desc">
+              An archival blog publication dedicated to slow reading, humane digital ergonomics, and classical editorial craft. Curated and written solely by Side Atelier.
+            </p>
+            <div class="footer-brand-desk">
+              <span class="desk-indicator-dot"></span>
+              <span class="desk-indicator-text">Editorial Desk &bull; Copenhagen &amp; Zurich</span>
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="footer-col">
+            <h4 class="footer-heading">PUBLICATION DIRECTORY</h4>
+            <ul class="footer-links-list">
+              <li><a href="#ledger">Archival Ledger</a></li>
+              <li><a href="#archive">Chronological Archive</a></li>
+              <li><a href="#about">About the Curator</a></li>
+              <li><button type="button" class="footer-contact-link" onclick="window.openContactModal();">Letters to the Desk</button></li>
+            </ul>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="footer-col">
+            <h4 class="footer-heading">ARCHIVAL BLUEPRINT</h4>
+            <p class="footer-colophon-text">
+              Zero advertising, zero analytics trackers, and zero category clutter. All prose adheres to the 65-character classical optical reading measure.
+            </p>
+            <div class="footer-typography-spec">
+              <span>Typeset in Newsreader, Plus Jakarta Sans, and JetBrains Mono.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-subbar">
+          <div class="footer-subbar-left">
+            <span class="footer-copyright">
+              &copy; 2024&ndash;2026 Atelier Journal. Curated by Side Atelier. Built with modern HTML, CSS &amp; JavaScript.
+            </span>
+          </div>
+
+          <div class="footer-subbar-right">
+            <a href="#dispatch" class="footer-rss-badge">
+              <span class="rss-dot"></span>
+              <span>RSS 2.0 Ledger</span>
+            </a>
+
+            <!-- Smooth Back-To-Top Button -->
+            <button type="button" class="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to top of page">
+              <span>Top</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVE MONOGRAPH READER MODAL / FULL-SCREEN DRAWER -->
+    <div class="reader-modal-overlay" id="reader-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="reader-title-mount">
+      <div class="reader-progress-bar" id="reading-progress-bar"></div>
+      
+      <div class="reader-modal-card">
+        <!-- Sticky Reader Toolbar -->
+        <div class="reader-toolbar">
+          <div class="reader-toolbar-left">
+            <button type="button" class="btn-reader-back" onclick="window.closeMonograph();" aria-label="Return to ledger">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Back to Ledger</span>
+            </button>
+          </div>
+
+          <div class="reader-toolbar-right">
+            <!-- Font Sizer Segmented Control -->
+            <div class="reader-tool-group" role="group" aria-label="Font size controls">
+              <button type="button" class="btn-tool-pill" onclick="window.adjustFontSize(-1);" title="Decrease type size" aria-label="Decrease type size">A-</button>
+              <button type="button" class="btn-tool-pill" onclick="window.adjustFontSize(1);" title="Increase type size" aria-label="Increase type size">A+</button>
+            </div>
+
+            <!-- Atmosphere Segmented Toggle -->
+            <div class="reader-tool-group" role="group" aria-label="Theme mode controls">
+              <button type="button" class="btn-tool-pill" id="btn-theme-canvas" onclick="window.toggleTheme('canvas');" title="Day canvas mode">Day</button>
+              <button type="button" class="btn-tool-pill" id="btn-theme-sepia" onclick="window.toggleTheme('sepia');" title="Sepia book mode">Sepia</button>
+              <button type="button" class="btn-tool-pill" id="btn-theme-dark" onclick="window.toggleTheme('dark');" title="Night noir mode">Dark</button>
+            </div>
+
+            <!-- Close Button -->
+            <button type="button" class="btn-reader-close" onclick="window.closeMonograph();" aria-label="Close reader">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Reader Prose Content Container -->
+        <article class="reader-content-body">
+          <header class="reader-header">
+            <div class="reader-meta-line">
+              <span id="reader-date-mount">October 2, 2026</span>
+              <span>&bull;</span>
+              <span id="reader-time-mount">8 min read</span>
+              <span>&bull;</span>
+              <span>Sole Author: Side Atelier</span>
+            </div>
+
+            <h1 class="reader-title" id="reader-title-mount">The Architecture of Restraint</h1>
+            <p class="reader-subtitle" id="reader-subtitle-mount">Why sustained reading requires the deliberate removal of algorithmic friction.</p>
+
+            <div class="reader-byline">
+              <div class="author-avatar-mini">S</div>
+              <div class="author-meta-text">
+                <span class="author-name">Side Atelier</span>
+                <span class="author-role">Curated Monograph &bull; Copenhagen &amp; Zurich</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="reader-image-frame">
+            <img id="reader-image-mount" src="/images/editorial_lead_hero_1790188809339.jpg" alt="Monograph cover" />
+          </div>
+
+          <div class="reader-prose-text" id="reader-prose-mount">
+            <!-- Full prose content injected here -->
+          </div>
+
+          <!-- Reader Footer Author Note & Action Buttons -->
+          <div class="reader-footer-author">
+            <span class="curator-bio-kicker">CURATORIAL COLOPHON</span>
+            <h4 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 0.5rem;">Written by Side Atelier</h4>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+              Drafted slowly in Copenhagen and set in Newsreader serifs at a 65-character measure. Letters and reflections regarding this monograph may be directed directly to the author’s desk.
+            </p>
+            <div class="reader-footer-actions">
+              <button type="button" class="btn-curator-primary" onclick="window.closeMonograph(); window.openContactModal();">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>Send Letter to Author's Desk</span>
+              </button>
+              <button type="button" class="btn-curator-secondary" onclick="window.closeMonograph();">
+                <span>&larr; Return to Ledger</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- LETTERS TO DESK (CONTACT) MODAL -->
+    <div class="contact-modal-overlay" id="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <div class="contact-modal-card">
+        <div class="contact-modal-header">
+          <div>
+            <span class="curator-bio-kicker">DIRECT CORRESPONDENCE</span>
+            <h3 class="contact-modal-title" id="contact-modal-title">Letter to the Desk</h3>
+            <p class="contact-modal-desc">Send private commentary, essays, or critical reflections directly to Side Atelier.</p>
+          </div>
+          <button type="button" class="btn-reader-close" onclick="window.closeContactModal();" aria-label="Close dialog">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <form id="letters-contact-form">
+          <div class="contact-form-group">
+            <label for="contact-name">Your Full Name</label>
+            <input type="text" id="contact-name" placeholder="Dr. Arthur Vance" required />
+          </div>
+
+          <div class="contact-form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" placeholder="vance@cambridge.ac.uk" required />
+          </div>
+
+          <div class="contact-form-group">
+            <label for="contact-subject">Topic / Monograph Folio Reference</label>
+            <input type="text" id="contact-subject" placeholder="Ref: The Architecture of Restraint (Vol. IV)" required />
+          </div>
+
+          <div class="contact-form-group">
+            <label for="contact-message">Letter Content</label>
+            <textarea id="contact-message" placeholder="Compose your thoughts slowly..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-send-letter">
+            <span>Transmit Letter to Desk</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Floating Scroll-To-Top Quick Action Button -->
+    <button type="button" class="btn-floating-top" id="btn-floating-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Scroll back to top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
-
