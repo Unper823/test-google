@@ -44,26 +44,43 @@ function atelier_theme_setup() {
 add_action('after_setup_theme', 'atelier_theme_setup');
 
 /**
- * Enqueue Google Fonts and theme stylesheet
+ * Enqueue Google Fonts, stylesheets, and JavaScript files
  */
 function atelier_enqueue_scripts() {
-    // Google Fonts: Newsreader, Plus Jakarta Sans, JetBrains Mono
+    // 1. External Typography: Newsreader, Plus Jakarta Sans, JetBrains Mono
     wp_enqueue_style(
-        'atelier-google-fonts',
-        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap',
+        'theme-google-fonts',
+        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
         [],
         null
     );
 
-    // Main stylesheet
+    // 2. Main root stylesheet
     wp_enqueue_style(
-        'atelier-main-style',
-        get_stylesheet_uri(),
-        ['atelier-google-fonts'],
+        'theme-main-style',
+        get_template_directory_uri() . '/style.css',
+        ['theme-google-fonts'],
         '1.0.0'
     );
 
-    // Threaded comment reply script
+    // 3. Layout and custom stylesheet
+    wp_enqueue_style(
+        'theme-custom-style',
+        get_template_directory_uri() . '/assets/css/main.css',
+        ['theme-main-style'],
+        '1.0.0'
+    );
+
+    // 4. Interactive scripts (atmosphere switcher, search drawer, reading progress)
+    wp_enqueue_script(
+        'theme-main-script',
+        get_template_directory_uri() . '/assets/js/main.js',
+        [],
+        '1.0.0',
+        true
+    );
+
+    // 5. Threaded comment reply script
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
