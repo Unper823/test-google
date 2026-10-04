@@ -60,7 +60,7 @@ function atelier_enqueue_scripts() {
         'theme-main-style',
         get_template_directory_uri() . '/style.css',
         ['theme-google-fonts'],
-        '1.0.0'
+        '1.0.1'
     );
 
     // 3. Layout and custom stylesheet
@@ -68,7 +68,7 @@ function atelier_enqueue_scripts() {
         'theme-custom-style',
         get_template_directory_uri() . '/assets/css/main.css',
         ['theme-main-style'],
-        '1.0.0'
+        '1.0.1'
     );
 
     // 4. Interactive scripts (atmosphere switcher, search drawer, reading progress)
@@ -76,7 +76,7 @@ function atelier_enqueue_scripts() {
         'theme-main-script',
         get_template_directory_uri() . '/assets/js/main.js',
         [],
-        '1.0.0',
+        '1.0.1',
         true
     );
 

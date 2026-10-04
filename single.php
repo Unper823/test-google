@@ -63,7 +63,7 @@ while (have_posts()) : the_post();
         <?php endif; ?>
 
         <!-- Monograph Body Prose (Constrained to 65-char optimal measure) -->
-        <div class="reader-prose-container editorial-drop-cap">
+        <div class="reader-prose-container">
             <?php
             the_content();
 

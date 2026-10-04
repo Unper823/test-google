@@ -26,7 +26,7 @@ while (have_posts()) : the_post();
             </div>
         <?php endif; ?>
 
-        <div class="editorial-page-content editorial-drop-cap">
+        <div class="editorial-page-content">
             <?php
             the_content();
 

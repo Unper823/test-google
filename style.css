@@ -1012,22 +1012,34 @@ body.admin-bar .site-header {
   border-top: 1px solid var(--border-subtle);
 }
 
-/* Classical Editorial Drop-Cap */
-.editorial-drop-cap p:first-of-type::first-letter {
-  font-family: var(--font-serif);
-  font-size: 3.75rem;
-  line-height: 0.85;
-  float: left;
-  margin-right: 0.75rem;
-  margin-top: 0.25rem;
-  font-weight: 500;
-  color: var(--text-primary);
+/* Normal Blog Text & First Letter Reset (no oversized drop-caps) */
+.editorial-drop-cap p:first-of-type::first-letter,
+.reader-prose-container p:first-of-type::first-letter,
+.editorial-page-content p:first-of-type::first-letter,
+.reader-prose-text p:first-of-type::first-letter,
+p.has-drop-cap:not(:focus)::first-letter,
+.has-drop-cap:not(:focus)::first-letter {
+  float: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  color: inherit !important;
+  text-transform: none !important;
+  letter-spacing: inherit !important;
+  display: inline !important;
 }
 
 .reader-prose-container {
-  font-size: 1.0625rem;
-  line-height: 1.85;
-  color: #383532;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-primary);
+  text-align: left;
 }
 
 .reader-prose-container p {
@@ -1614,55 +1626,78 @@ body.admin-bar .site-header {
 }
 
 /* Form Fields */
+.comment-respond,
+#respond {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 .comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-.comment-form p {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+.comment-form p,
+.comment-form .comment-form-comment,
+.comment-form .comment-form-author,
+.comment-form .comment-form-email,
+.comment-form .comment-form-url {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  margin: 0 0 1.25rem 0 !important;
+  width: 100% !important;
+  clear: both !important;
+  box-sizing: border-box !important;
 }
 
-.comment-form label {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 0.45rem;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  letter-spacing: 0.01em;
+.comment-form label,
+.comment-form-comment label {
+  display: block !important;
+  width: 100% !important;
+  text-align: left !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: 0.45rem !important;
+  letter-spacing: 0.01em !important;
 }
 
-.comment-form label .required {
-  color: #DC2626;
-  font-weight: 700;
+.comment-form label .required,
+.comment-form-comment label .required {
+  color: #DC2626 !important;
+  font-weight: 700 !important;
 }
 
 .comment-form textarea,
+.comment-form-comment textarea,
 .comment-form input[type="text"],
 .comment-form input[type="email"],
 .comment-form input[type="url"] {
-  width: 100%;
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  color: var(--text-primary);
-  background-color: var(--bg-canvas);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm, 6px);
-  padding: 0.75rem 1rem;
-  line-height: 1.6;
-  transition: var(--transition-smooth);
-  box-sizing: border-box;
+  display: block !important;
+  width: 100% !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.9375rem !important;
+  color: var(--text-primary) !important;
+  background-color: var(--bg-canvas) !important;
+  border: 1px solid var(--border-strong) !important;
+  border-radius: var(--radius-sm, 6px) !important;
+  padding: 0.85rem 1rem !important;
+  line-height: 1.6 !important;
+  transition: var(--transition-smooth) !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
 }
 
-.comment-form textarea {
-  min-height: 130px;
-  resize: vertical;
+.comment-form textarea,
+.comment-form-comment textarea {
+  min-height: 140px !important;
+  resize: vertical !important;
 }
 
 .comment-form textarea:focus,
