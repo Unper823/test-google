@@ -354,6 +354,45 @@ function setupEventListeners(): void {
       contactForm.reset();
     });
   }
+
+  // Reader Reflection / Comment form submit handler
+  const commentForm = document.getElementById('reader-comment-form') as HTMLFormElement | null;
+  if (commentForm) {
+    commentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const textarea = commentForm.querySelector<HTMLTextAreaElement>('#comment-text');
+      if (textarea && textarea.value.trim()) {
+        const commentList = document.getElementById('reader-comment-list');
+        const countBadge = document.getElementById('reader-comments-count');
+        const commentText = textarea.value.trim();
+        const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        if (commentList) {
+          const newLi = document.createElement('li');
+          newLi.className = 'comment-body';
+          newLi.innerHTML = `
+            <div class="comment-meta">
+              <div class="author-avatar-mini">S</div>
+              <span class="comment-author"><strong class="fn">SideAtelier</strong> <span style="font-size: 0.6875rem; background: var(--bg-subtle); padding: 0.15rem 0.45rem; border-radius: 4px; margin-left: 0.25rem;">Author</span></span>
+              <span class="comment-metadata"><time>${dateStr}</time></span>
+            </div>
+            <div class="comment-content">
+              <p>${commentText.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+            </div>
+          `;
+          commentList.appendChild(newLi);
+
+          const currentCount = commentList.querySelectorAll('.comment-body').length;
+          if (countBadge) {
+            countBadge.textContent = `${currentCount} Reader Reflections`;
+          }
+        }
+
+        showToast('Your reflection has been posted to the monograph.');
+        commentForm.reset();
+      }
+    });
+  }
 }
 
 function setupScrollSpy(): void {

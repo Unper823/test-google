@@ -1,0 +1,5 @@
+# Robots.txt for Atelier Editorial
+User-agent: *
+Allow: /
+
+Sitemap: /sitemap.xml

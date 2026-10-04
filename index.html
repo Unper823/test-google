@@ -9,6 +9,22 @@
     <meta property="og:description" content="A refined 4-page editorial blog blueprint featuring new article highlights, searchable archives, reader view, author profile, and AI Studio customization guide." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Periodical",
+      "name": "Atelier",
+      "headline": "Atelier — Archival Editorial Monograph Ledger",
+      "description": "An archival blog publication dedicated to slow reading, humane digital ergonomics, and classical editorial craft.",
+      "url": "https://atelier-editorial.org",
+      "author": {
+        "@type": "Person",
+        "name": "Side Atelier",
+        "jobTitle": "Archival Curator & Typographer"
+      }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="/src/style.css">
@@ -342,6 +358,48 @@
           <div class="reader-prose-text" id="reader-prose-mount">
             <!-- Full prose content injected here -->
           </div>
+
+          <!-- Reader Reflections & Comments Area -->
+          <section id="comments" class="comments-area" aria-label="Monograph Reflections">
+            <h3 class="comments-title" id="reader-comments-count">2 Reader Reflections</h3>
+
+            <ol class="comment-list" id="reader-comment-list">
+              <li class="comment-body">
+                <div class="comment-meta">
+                  <div class="author-avatar-mini">E</div>
+                  <span class="comment-author"><strong class="fn">Dr. Elena Rostova</strong></span>
+                  <span class="comment-metadata"><time datetime="2026-09-28">September 28, 2026</time></span>
+                </div>
+                <div class="comment-content">
+                  <p>The emphasis on the 65-character measure resonates profoundly with our cognitive research in Zurich. When peripheral visual distractors are eliminated, sustained comprehension increases exponentially.</p>
+                </div>
+              </li>
+              <li class="comment-body">
+                <div class="comment-meta">
+                  <div class="author-avatar-mini">M</div>
+                  <span class="comment-author"><strong class="fn">Marcus Lindqvist</strong></span>
+                  <span class="comment-metadata"><time datetime="2026-10-01">October 1, 2026</time></span>
+                </div>
+                <div class="comment-content">
+                  <p>A masterclass in restraint. It is a relief to read prose that doesn't constantly demand that I subscribe, share, or click on twenty algorithmic related articles.</p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="comment-respond" id="respond">
+              <h3 id="reply-title" class="comment-reply-title">Leave a Reply</h3>
+              <p class="logged-in-as">Logged in as SideAtelier. <span class="required-notice">Required fields are marked *</span></p>
+              <form class="comment-form" id="reader-comment-form">
+                <p class="comment-form-comment">
+                  <label for="comment-text">Comment <span class="required">*</span></label>
+                  <textarea id="comment-text" name="comment" rows="5" required placeholder="Write your reflection on this monograph..."></textarea>
+                </p>
+                <p class="form-submit">
+                  <input type="submit" name="submit" id="submit" class="submit btn-editorial-submit" value="Post Comment">
+                </p>
+              </form>
+            </div>
+          </section>
 
           <!-- Reader Footer Author Note & Action Buttons -->
           <div class="reader-footer-author">

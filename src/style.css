@@ -1962,3 +1962,327 @@ body.theme-dark .reader-toolbar {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
+
+/* ==========================================================================
+   WORDPRESS COMMENTS & COMMENT SUBMIT BUTTON
+   ========================================================================== */
+.comments-area,
+#comments {
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-subtle);
+  max-width: var(--reader-measure, 720px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comments-title,
+.comments-area h3,
+#comments h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.01em;
+}
+
+/* Comment Form Respond Card */
+.comment-respond,
+#respond {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: 0 4px 20px -6px rgba(28, 25, 23, 0.05);
+}
+
+.comment-reply-title,
+#reply-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-reply-title small a {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #DC2626;
+  text-decoration: underline;
+  margin-left: 1rem;
+}
+
+.comment-notes,
+.logged-in-as {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.logged-in-as a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.logged-in-as a:hover {
+  color: var(--accent-emerald, #065F46);
+}
+
+/* Form Fields */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.comment-form p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  letter-spacing: 0.01em;
+}
+
+.comment-form label .required {
+  color: #DC2626;
+  font-weight: 700;
+}
+
+.comment-form textarea,
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"] {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.75rem 1rem;
+  line-height: 1.6;
+  transition: var(--transition-smooth);
+  box-sizing: border-box;
+}
+
+.comment-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.comment-form textarea:focus,
+.comment-form input[type="text"]:focus,
+.comment-form input[type="email"]:focus,
+.comment-form input[type="url"]:focus {
+  outline: none;
+  background-color: var(--bg-card);
+  border-color: var(--border-dark);
+  box-shadow: 0 0 0 3px rgba(28, 25, 23, 0.08);
+}
+
+.comment-form-cookies-consent {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.comment-form-cookies-consent input[type="checkbox"] {
+  accent-color: var(--text-primary);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.comment-form-cookies-consent label {
+  margin-bottom: 0 !important;
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+
+/* THE COMMENT SUBMIT BUTTON */
+.form-submit,
+p.form-submit {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0 !important;
+}
+
+#submit,
+.submit,
+.comment-form input[type="submit"],
+.comment-form button[type="submit"],
+.comment-respond input[type="submit"],
+.btn-editorial-submit {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background-color: var(--text-primary, #1C1917) !important;
+  color: #FFFFFF !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  padding: 0.75rem 1.6rem !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.2 !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px -2px rgba(28, 25, 23, 0.15) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: auto !important;
+}
+
+#submit:hover,
+.submit:hover,
+.comment-form input[type="submit"]:hover,
+.comment-form button[type="submit"]:hover,
+.comment-respond input[type="submit"]:hover,
+.btn-editorial-submit:hover {
+  background-color: #383532 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px -4px rgba(28, 25, 23, 0.22) !important;
+}
+
+#submit:active,
+.submit:active,
+.comment-form input[type="submit"]:active,
+.comment-form button[type="submit"]:active,
+.comment-respond input[type="submit"]:active,
+.btn-editorial-submit:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 1px 4px rgba(28, 25, 23, 0.12) !important;
+}
+
+#submit:focus-visible,
+.submit:focus-visible,
+.comment-form input[type="submit"]:focus-visible,
+.btn-editorial-submit:focus-visible {
+  outline: 2px solid var(--accent-emerald, #065F46) !important;
+  outline-offset: 2px !important;
+}
+
+/* Atmosphere Theme Overrides for Comment Section */
+body.theme-dark .comment-respond,
+body.theme-dark #respond {
+  background-color: var(--bg-card);
+  border-color: var(--border-subtle);
+}
+
+body.theme-dark #submit,
+body.theme-dark .submit,
+body.theme-dark .comment-form input[type="submit"],
+body.theme-dark .comment-form button[type="submit"],
+body.theme-dark .btn-editorial-submit {
+  background-color: #F5F4F2 !important;
+  color: #121110 !important;
+}
+
+body.theme-dark #submit:hover,
+body.theme-dark .submit:hover,
+body.theme-dark .comment-form input[type="submit"]:hover,
+body.theme-dark .comment-form button[type="submit"]:hover,
+body.theme-dark .btn-editorial-submit:hover {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+body.theme-sepia .comment-respond,
+body.theme-sepia #respond {
+  background-color: var(--bg-card);
+  border-color: var(--border-subtle);
+}
+
+body.theme-sepia #submit,
+body.theme-sepia .submit,
+body.theme-sepia .comment-form input[type="submit"],
+body.theme-sepia .comment-form button[type="submit"],
+body.theme-sepia .btn-editorial-submit {
+  background-color: #2B2319 !important;
+  color: #FDF9EE !important;
+}
+
+body.theme-sepia #submit:hover,
+body.theme-sepia .submit:hover {
+  background-color: #4A3D2C !important;
+}
+
+/* Comment List Styling */
+.comment-list,
+ol.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment-list .comment-body {
+  padding: 1.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 10px);
+}
+
+.comment-list .comment-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.comment-list .comment-author .fn {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-style: normal;
+}
+
+.comment-list .comment-metadata a {
+  color: var(--text-muted);
+}
+
+.comment-list .comment-content {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.comment-list .reply a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

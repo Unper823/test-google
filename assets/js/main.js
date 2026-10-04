@@ -64,4 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
   }
+
+  // 4. Smooth Back to Top
+  const backToTopBtns = document.querySelectorAll('.btn-back-to-top');
+  backToTopBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 });
